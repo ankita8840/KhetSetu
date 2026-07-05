@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper text-ink font-body antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  @apply font-display;
+}
+
+::selection {
+  @apply bg-harvest-300 text-forest-900;
+}
+
+:focus-visible {
+  outline: 2px solid #3D963D;
+  outline-offset: 3px;
+}
+
+/* ── Soil divider ── */
+.soil-divider {
+  height: 8px;
+  @apply bg-soil-layers;
+}
+
+/* ── Scrollbars ── */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: #85C885;
+  border-radius: 9999px;
+  transition: background-color 0.2s ease;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: #4FAF4F;
+}
+
+/* ── Glass morphism styles ── */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ── Shared card skin (modernized) ── */
+@layer components {
+  .card {
+    @apply bg-white rounded-2xl border border-forest-100/70 shadow-soft transition-all duration-300 hover:shadow-medium;
+  }
+  .card-p {
+    @apply card p-6;
+  }
+  .card-hover {
+    @apply hover:-translate-y-1 hover:shadow-medium transition-all duration-300;
+  }
+  .input {
+    @apply w-full px-4 py-3 rounded-xl border border-forest-200/80 bg-white
+           text-sm text-ink outline-none transition-all duration-200
+           focus:border-forest-500 focus:ring-4 focus:ring-forest-500/10 placeholder:text-ink/40;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-gradient-primary text-white px-6 py-3
+           rounded-xl font-medium text-sm shadow-soft hover:shadow-glow-green hover:-translate-y-0.5
+           transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed;
+  }
+  .btn-primary-outline {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-forest-500 text-forest-700 bg-white px-6 py-3
+           rounded-xl font-medium text-sm hover:bg-forest-50 hover:border-forest-600
+           transition-all duration-300;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 border border-forest-200 text-forest-700 bg-white
+           px-6 py-3 rounded-xl font-medium text-sm hover:bg-forest-50 hover:border-forest-300
+           transition-all duration-300;
+  }
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2 bg-gradient-accent text-forest-950 px-6 py-3
+           rounded-xl font-medium text-sm shadow-soft hover:shadow-glow-gold hover:-translate-y-0.5
+           transition-all duration-300;
+  }
+  .badge {
+    @apply text-xs font-semibold px-3 py-1.5 rounded-full;
+  }
+  .badge-green {
+    @apply badge bg-forest-100 text-forest-700;
+  }
+  .badge-amber {
+    @apply badge bg-harvest-100 text-harvest-700;
+  }
+  .badge-red {
+    @apply badge bg-terracotta-100 text-terracotta-600;
+  }
+  .badge-blue {
+    @apply badge bg-sky-100 text-sky-700;
+  }
+  .label {
+    @apply text-sm font-medium text-ink/75;
+  }
+}
+
+/* ── Subtle page entrance animation ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-enter {
+  animation: fadeUp 0.22s ease-out both;
+}
+
+/* ── Modern dashboard hero gradient ── */
+.dash-hero-gradient {
+  background: radial-gradient(60% 60% at 100% 0%,
+    rgba(255, 190, 26, 0.15) 0%, transparent 70%),
+    radial-gradient(50% 50% at 0% 80%,
+    rgba(61, 150, 61, 0.1) 0%, transparent 70%);
+}
+
+/* ── Floating animation for decorative elements ── */
+.floating-element {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ── Stagger animation delays for lists/grids ── */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
