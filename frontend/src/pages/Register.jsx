@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Sprout, ArrowRight } from "lucide-react";
+import { Sprout, ArrowRight, Eye, EyeOff } from "lucide-react";
 import { useAuth } from "../context/AuthContext.jsx";
 import LanguageSwitcher from "../components/LanguageSwitcher.jsx";
 
@@ -10,6 +10,7 @@ const Register = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", password: "" });
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const { register } = useAuth();
   const navigate = useNavigate();
 
@@ -92,18 +93,29 @@ const Register = () => {
                 />
               </div>
               <div>
-                <label className="label">{t("auth.password")}</label>
-                <input
-                  type="password"
-                  name="password"
-                  required
-                  minLength={6}
-                  value={form.password}
-                  onChange={handleChange}
-                  className="input mt-2"
-                  placeholder="At least 6 characters"
-                />
-              </div>
+  <label className="label">{t("auth.password")}</label>
+
+  <div className="relative mt-2">
+    <input
+      type={showPassword ? "text" : "password"}
+      name="password"
+      required
+      minLength={6}
+      value={form.password}
+      onChange={handleChange}
+      className="input pr-12"
+      placeholder="At least 6 characters"
+    />
+
+    <button
+      type="button"
+      onClick={() => setShowPassword(!showPassword)}
+      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-green-600"
+    >
+      {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+    </button>
+  </div>
+</div>
               <button
                 type="submit"
                 disabled={submitting}

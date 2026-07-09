@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Sprout, ArrowRight } from "lucide-react";
+import { Sprout, ArrowRight, Eye, EyeOff } from "lucide-react";
 import { useAuth } from "../context/AuthContext.jsx";
 import LanguageSwitcher from "../components/LanguageSwitcher.jsx";
 
 const Login = () => {
   const { t } = useTranslation();
+  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -75,14 +76,24 @@ const Login = () => {
                     {t("auth.forgotPassword")}
                   </Link>
                 </div>
-                <input
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="input mt-2"
-                  placeholder="••••••••"
-                />
+                <div className="relative mt-2">
+  <input
+    type={showPassword ? "text" : "password"}
+    required
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    className="input pr-12"
+    placeholder="••••••••"
+  />
+
+  <button
+    type="button"
+    onClick={() => setShowPassword(!showPassword)}
+    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-green-600"
+  >
+    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+  </button>
+</div>
               </div>
               <button
                 type="submit"
